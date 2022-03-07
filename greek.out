@@ -1,0 +1,227 @@
+============================== Mace4 =================================
+Mace4 (64) version 2009-11A, November 2009.
+Process 4576 was started by gabriel on gabriel-virtual-machine,
+Thu Dec 23 22:49:02 2021
+The command was "mace4 -f greek_logic.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file greek_logic.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,4).
+    % assign(domain_size, 4) -> assign(start_size, 4).
+    % assign(domain_size, 4) -> assign(end_size, 4).
+
+list(distinct).
+[Sigma,Pi,Lambda,Delta].
+end_of_list.
+
+formulas(assumptions).
+grid(x,y) = Sigma | grid(x,y) = Pi | grid(x,y) = Lambda | grid(x,y) = Delta.
+grid(x,y) = Sigma -> grid(x,y) != Pi & grid(x,y) != Lambda & grid(x,y) != Delta.
+grid(x,y) = Pi -> grid(x,y) != Sigma & grid(x,y) != Lambda & grid(x,y) != Delta.
+grid(x,y) = Lambda -> grid(x,y) != Sigma & grid(x,y) != Pi & grid(x,y) != Delta.
+grid(x,y) = Delta -> grid(x,y) != Sigma & grid(x,y) != Pi & grid(x,y) != Lambda.
+next(0) = 1.
+next(1) = 2.
+next(2) = 3.
+next(3) = 0.
+prev(0) = 3.
+prev(1) = 0.
+prev(2) = 1.
+prev(3) = 2.
+grid(x,y) = Sigma -> grid(next(x),y) != Sigma & grid(next(next(x)),y) != Sigma & grid(next(next(next(x))),y) != Sigma.
+grid(x,y) = Pi -> grid(next(x),y) != Pi & grid(next(next(x)),y) != Pi & grid(next(next(next(x))),y) != Pi.
+grid(x,y) = Lambda -> grid(next(x),y) != Lambda & grid(next(next(x)),y) != Lambda & grid(next(next(next(x))),y) != Lambda.
+grid(x,y) = Delta -> grid(next(x),y) != Delta & grid(next(next(x)),y) != Delta & grid(next(next(next(x))),y) != Delta.
+grid(x,y) = Sigma -> grid(x,next(y)) != Sigma & grid(x,next(next(y))) != Sigma & grid(x,next(next(next(y)))) != Sigma.
+grid(x,y) = Pi -> grid(x,next(y)) != Pi & grid(x,next(next(y))) != Pi & grid(x,next(next(next(y)))) != Pi.
+grid(x,y) = Lambda -> grid(x,next(y)) != Lambda & grid(x,next(next(y))) != Lambda & grid(x,next(next(next(y)))) != Lambda.
+grid(x,y) = Delta -> grid(x,next(y)) != Delta & grid(x,next(next(y))) != Delta & grid(x,next(next(next(y)))) != Delta.
+grid(x,y) = Sigma & x = y -> grid(next(x),next(y)) != Sigma & grid(next(next(x)),next(next(y))) != Sigma & grid(next(next(next(x))),next(next(next(y)))) != Sigma.
+grid(x,y) = Pi & x = y -> grid(next(x),next(y)) != Pi & grid(next(next(x)),next(next(y))) != Pi & grid(next(next(next(x))),next(next(next(y)))) != Pi.
+grid(x,y) = Lambda & x = y -> grid(next(x),next(y)) != Lambda & grid(next(next(x)),next(next(y))) != Lambda & grid(next(next(next(x))),next(next(next(y)))) != Lambda.
+grid(x,y) = Delta & x = y -> grid(next(x),next(y)) != Delta & grid(next(next(x)),next(next(y))) != Delta & grid(next(next(next(x))),next(next(next(y)))) != Delta.
+grid(x,y) = Sigma & x + y = 3 -> grid(next(x),prev(y)) != Sigma & grid(next(next(x)),prev(prev(y))) != Sigma & grid(next(next(next(x))),prev(prev(prev(y)))) != Sigma.
+grid(x,y) = Pi & x + y = 3 -> grid(next(x),prev(y)) != Pi & grid(next(next(x)),prev(prev(y))) != Pi & grid(next(next(next(x))),prev(prev(prev(y)))) != Pi.
+grid(x,y) = Lambda & x + y = 3 -> grid(next(x),prev(y)) != Lambda & grid(next(next(x)),prev(prev(y))) != Lambda & grid(next(next(next(x))),prev(prev(prev(y)))) != Lambda.
+grid(x,y) = Delta & x + y = 3 -> grid(next(x),prev(y)) != Delta & grid(next(next(x)),prev(prev(y))) != Delta & grid(next(next(next(x))),prev(prev(prev(y)))) != Delta.
+grid(0,0) = Sigma.
+grid(0,1) = Pi.
+grid(0,2) = Lambda.
+grid(0,3) = Delta.
+grid(3,2) = Delta.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 grid(x,y) = Sigma -> grid(x,y) != Pi & grid(x,y) != Lambda & grid(x,y) != Delta # label(non_clause).  [assumption].
+2 grid(x,y) = Pi -> grid(x,y) != Sigma & grid(x,y) != Lambda & grid(x,y) != Delta # label(non_clause).  [assumption].
+3 grid(x,y) = Lambda -> grid(x,y) != Sigma & grid(x,y) != Pi & grid(x,y) != Delta # label(non_clause).  [assumption].
+4 grid(x,y) = Delta -> grid(x,y) != Sigma & grid(x,y) != Pi & grid(x,y) != Lambda # label(non_clause).  [assumption].
+5 grid(x,y) = Sigma -> grid(next(x),y) != Sigma & grid(next(next(x)),y) != Sigma & grid(next(next(next(x))),y) != Sigma # label(non_clause).  [assumption].
+6 grid(x,y) = Pi -> grid(next(x),y) != Pi & grid(next(next(x)),y) != Pi & grid(next(next(next(x))),y) != Pi # label(non_clause).  [assumption].
+7 grid(x,y) = Lambda -> grid(next(x),y) != Lambda & grid(next(next(x)),y) != Lambda & grid(next(next(next(x))),y) != Lambda # label(non_clause).  [assumption].
+8 grid(x,y) = Delta -> grid(next(x),y) != Delta & grid(next(next(x)),y) != Delta & grid(next(next(next(x))),y) != Delta # label(non_clause).  [assumption].
+9 grid(x,y) = Sigma -> grid(x,next(y)) != Sigma & grid(x,next(next(y))) != Sigma & grid(x,next(next(next(y)))) != Sigma # label(non_clause).  [assumption].
+10 grid(x,y) = Pi -> grid(x,next(y)) != Pi & grid(x,next(next(y))) != Pi & grid(x,next(next(next(y)))) != Pi # label(non_clause).  [assumption].
+11 grid(x,y) = Lambda -> grid(x,next(y)) != Lambda & grid(x,next(next(y))) != Lambda & grid(x,next(next(next(y)))) != Lambda # label(non_clause).  [assumption].
+12 grid(x,y) = Delta -> grid(x,next(y)) != Delta & grid(x,next(next(y))) != Delta & grid(x,next(next(next(y)))) != Delta # label(non_clause).  [assumption].
+13 grid(x,y) = Sigma & x = y -> grid(next(x),next(y)) != Sigma & grid(next(next(x)),next(next(y))) != Sigma & grid(next(next(next(x))),next(next(next(y)))) != Sigma # label(non_clause).  [assumption].
+14 grid(x,y) = Pi & x = y -> grid(next(x),next(y)) != Pi & grid(next(next(x)),next(next(y))) != Pi & grid(next(next(next(x))),next(next(next(y)))) != Pi # label(non_clause).  [assumption].
+15 grid(x,y) = Lambda & x = y -> grid(next(x),next(y)) != Lambda & grid(next(next(x)),next(next(y))) != Lambda & grid(next(next(next(x))),next(next(next(y)))) != Lambda # label(non_clause).  [assumption].
+16 grid(x,y) = Delta & x = y -> grid(next(x),next(y)) != Delta & grid(next(next(x)),next(next(y))) != Delta & grid(next(next(next(x))),next(next(next(y)))) != Delta # label(non_clause).  [assumption].
+17 grid(x,y) = Sigma & x + y = 3 -> grid(next(x),prev(y)) != Sigma & grid(next(next(x)),prev(prev(y))) != Sigma & grid(next(next(next(x))),prev(prev(prev(y)))) != Sigma # label(non_clause).  [assumption].
+18 grid(x,y) = Pi & x + y = 3 -> grid(next(x),prev(y)) != Pi & grid(next(next(x)),prev(prev(y))) != Pi & grid(next(next(next(x))),prev(prev(prev(y)))) != Pi # label(non_clause).  [assumption].
+19 grid(x,y) = Lambda & x + y = 3 -> grid(next(x),prev(y)) != Lambda & grid(next(next(x)),prev(prev(y))) != Lambda & grid(next(next(next(x))),prev(prev(prev(y)))) != Lambda # label(non_clause).  [assumption].
+20 grid(x,y) = Delta & x + y = 3 -> grid(next(x),prev(y)) != Delta & grid(next(next(x)),prev(prev(y))) != Delta & grid(next(next(next(x))),prev(prev(prev(y)))) != Delta # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+grid(x,y) = Sigma | grid(x,y) = Pi | grid(x,y) = Lambda | grid(x,y) = Delta.
+grid(x,y) != Sigma | grid(x,y) != Pi.
+grid(x,y) != Sigma | grid(x,y) != Lambda.
+grid(x,y) != Sigma | grid(x,y) != Delta.
+grid(x,y) != Pi | grid(x,y) != Sigma.
+grid(x,y) != Pi | grid(x,y) != Lambda.
+grid(x,y) != Pi | grid(x,y) != Delta.
+grid(x,y) != Lambda | grid(x,y) != Sigma.
+grid(x,y) != Lambda | grid(x,y) != Pi.
+grid(x,y) != Lambda | grid(x,y) != Delta.
+grid(x,y) != Delta | grid(x,y) != Sigma.
+grid(x,y) != Delta | grid(x,y) != Pi.
+grid(x,y) != Delta | grid(x,y) != Lambda.
+next(0) = 1.
+next(1) = 2.
+next(2) = 3.
+next(3) = 0.
+prev(0) = 3.
+prev(1) = 0.
+prev(2) = 1.
+prev(3) = 2.
+grid(x,y) != Sigma | grid(next(x),y) != Sigma.
+grid(x,y) != Sigma | grid(next(next(x)),y) != Sigma.
+grid(x,y) != Sigma | grid(next(next(next(x))),y) != Sigma.
+grid(x,y) != Pi | grid(next(x),y) != Pi.
+grid(x,y) != Pi | grid(next(next(x)),y) != Pi.
+grid(x,y) != Pi | grid(next(next(next(x))),y) != Pi.
+grid(x,y) != Lambda | grid(next(x),y) != Lambda.
+grid(x,y) != Lambda | grid(next(next(x)),y) != Lambda.
+grid(x,y) != Lambda | grid(next(next(next(x))),y) != Lambda.
+grid(x,y) != Delta | grid(next(x),y) != Delta.
+grid(x,y) != Delta | grid(next(next(x)),y) != Delta.
+grid(x,y) != Delta | grid(next(next(next(x))),y) != Delta.
+grid(x,y) != Sigma | grid(x,next(y)) != Sigma.
+grid(x,y) != Sigma | grid(x,next(next(y))) != Sigma.
+grid(x,y) != Sigma | grid(x,next(next(next(y)))) != Sigma.
+grid(x,y) != Pi | grid(x,next(y)) != Pi.
+grid(x,y) != Pi | grid(x,next(next(y))) != Pi.
+grid(x,y) != Pi | grid(x,next(next(next(y)))) != Pi.
+grid(x,y) != Lambda | grid(x,next(y)) != Lambda.
+grid(x,y) != Lambda | grid(x,next(next(y))) != Lambda.
+grid(x,y) != Lambda | grid(x,next(next(next(y)))) != Lambda.
+grid(x,y) != Delta | grid(x,next(y)) != Delta.
+grid(x,y) != Delta | grid(x,next(next(y))) != Delta.
+grid(x,y) != Delta | grid(x,next(next(next(y)))) != Delta.
+grid(x,y) != Sigma | y != x | grid(next(x),next(y)) != Sigma.
+grid(x,y) != Sigma | y != x | grid(next(next(x)),next(next(y))) != Sigma.
+grid(x,y) != Sigma | y != x | grid(next(next(next(x))),next(next(next(y)))) != Sigma.
+grid(x,y) != Pi | y != x | grid(next(x),next(y)) != Pi.
+grid(x,y) != Pi | y != x | grid(next(next(x)),next(next(y))) != Pi.
+grid(x,y) != Pi | y != x | grid(next(next(next(x))),next(next(next(y)))) != Pi.
+grid(x,y) != Lambda | y != x | grid(next(x),next(y)) != Lambda.
+grid(x,y) != Lambda | y != x | grid(next(next(x)),next(next(y))) != Lambda.
+grid(x,y) != Lambda | y != x | grid(next(next(next(x))),next(next(next(y)))) != Lambda.
+grid(x,y) != Delta | y != x | grid(next(x),next(y)) != Delta.
+grid(x,y) != Delta | y != x | grid(next(next(x)),next(next(y))) != Delta.
+grid(x,y) != Delta | y != x | grid(next(next(next(x))),next(next(next(y)))) != Delta.
+grid(x,y) != Sigma | x + y != 3 | grid(next(x),prev(y)) != Sigma.
+grid(x,y) != Sigma | x + y != 3 | grid(next(next(x)),prev(prev(y))) != Sigma.
+grid(x,y) != Sigma | x + y != 3 | grid(next(next(next(x))),prev(prev(prev(y)))) != Sigma.
+grid(x,y) != Pi | x + y != 3 | grid(next(x),prev(y)) != Pi.
+grid(x,y) != Pi | x + y != 3 | grid(next(next(x)),prev(prev(y))) != Pi.
+grid(x,y) != Pi | x + y != 3 | grid(next(next(next(x))),prev(prev(prev(y)))) != Pi.
+grid(x,y) != Lambda | x + y != 3 | grid(next(x),prev(y)) != Lambda.
+grid(x,y) != Lambda | x + y != 3 | grid(next(next(x)),prev(prev(y))) != Lambda.
+grid(x,y) != Lambda | x + y != 3 | grid(next(next(next(x))),prev(prev(prev(y)))) != Lambda.
+grid(x,y) != Delta | x + y != 3 | grid(next(x),prev(y)) != Delta.
+grid(x,y) != Delta | x + y != 3 | grid(next(next(x)),prev(prev(y))) != Delta.
+grid(x,y) != Delta | x + y != 3 | grid(next(next(next(x))),prev(prev(prev(y)))) != Delta.
+grid(0,0) = Sigma.
+grid(0,1) = Pi.
+grid(0,2) = Lambda.
+grid(0,3) = Delta.
+grid(3,2) = Delta.
+Sigma != Pi.
+Sigma != Lambda.
+Sigma != Delta.
+Pi != Lambda.
+Pi != Delta.
+Lambda != Delta.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 3.
+
+============================== DOMAIN SIZE 4 =========================
+
+=== Mace4 starting on domain size 4. ===
+
+============================== MODEL =================================
+
+interpretation( 4, [number=1, seconds=0], [
+
+        function(Delta, [ 0 ]),
+
+        function(Lambda, [ 1 ]),
+
+        function(Pi, [ 2 ]),
+
+        function(Sigma, [ 3 ]),
+
+        function(next(_), [ 1, 2, 3, 0 ]),
+
+        function(prev(_), [ 3, 0, 1, 2 ]),
+
+        function(grid(_,_), [
+			   3, 2, 1, 0,
+			   1, 0, 3, 2,
+			   0, 1, 2, 3,
+			   2, 3, 0, 1 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=995, kept=707.
+Selections=3, assignments=6, propagations=25, current_models=1.
+Rewrite_terms=2850, rewrite_bools=912, indexes=0.
+Rules_from_neg_clauses=13, cross_offs=45.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+------ process 4576 exit (max_models) ------
+
+Process 4576 exit (max_models) Thu Dec 23 22:49:02 2021
+The process finished Thu Dec 23 22:49:02 2021
